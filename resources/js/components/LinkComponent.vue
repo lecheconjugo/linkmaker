@@ -139,11 +139,12 @@
 										</el-form-item>
 									</el-col>
 									<el-col :span="24">
-										<el-form-item label="Estado" prop="link_edit.status">
-											<el-select v-model="link_edit.status" placeholder="Select">
-												<el-option v-for="status in status_options" :key="status.value" :label="status.label" :value="status.value">
-												</el-option>
-											</el-select>
+										<el-form-item label="Estado">
+											
+											<select v-model="link_edit.status" class="form-control">
+												<option v-for="status in status_options" :key="status.value" :value="status.value" v-text="status.label" ></option>
+											</select>
+
 										</el-form-item>
 									</el-col>
 								</el-row>
@@ -243,11 +244,10 @@
 										</el-form-item>
 									</el-col>
 									<el-col :span="24">
-										<el-form-item label="Estado" prop="campaign_edit.status">
-											<el-select v-model="campaign_edit.status" placeholder="Select">
-												<el-option v-for="status in status_options" :key="status.value" :label="status.label" :value="status.value">
-												</el-option>
-											</el-select>
+										<el-form-item label="Estado">
+											<select v-model="campaign_edit.status" class="form-control">
+												<option v-for="status in status_options" :key="status.value" :value="status.value" v-text="status.label" ></option>
+											</select>
 										</el-form-item>
 									</el-col>
 								</el-row>
@@ -282,11 +282,11 @@ export default {
 		status_options: [
 			{
 				label: 'Activo',
-				value: true
+				value: 1
 			},
 			{
 				label: 'Desactivado',
-				value: false
+				value: 0
 			}
 		]
     }
@@ -616,7 +616,7 @@ export default {
       	this.link_edit.campaign_id = link.campaign_id;
       	this.link_edit.link_name = link.link_name;
       	this.link_edit.link_long_url = link.link_long_url;
-      	this.link_edit.status = (link.status == 1) ? true : false;
+      	this.link_edit.status = link.status;
 
       	this.dialogEditLinkData = true;
     },
@@ -664,7 +664,7 @@ export default {
 		this.campaign_edit.id = campaign.id;
       	this.campaign_edit.campaign_name = campaign.campaign_name;
       	this.campaign_edit.campaign_description = campaign.campaign_description;
-      	this.campaign_edit.status = (campaign.status == 1) ? true : false;
+      	this.campaign_edit.status = campaign.status;
 
 		this.dialogEditCampaignData = true;
 	},
